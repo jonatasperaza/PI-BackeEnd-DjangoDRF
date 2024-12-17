@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-2g-boqh@8l94!hrh6@*(0b(t6v4&j7u=rg+3zlt%42u)jo#wp*'
 
-STATIC_URL = 'static/'
+STATIC_URL = '../static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEBUG = True
