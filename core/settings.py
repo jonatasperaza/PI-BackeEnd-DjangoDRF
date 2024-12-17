@@ -1,6 +1,7 @@
 from pathlib import Path
 from os import getenv
 from dotenv import load_dotenv
+from urllib.parse import urlparse
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
