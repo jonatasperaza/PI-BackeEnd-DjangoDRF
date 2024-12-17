@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -56,8 +57,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL para Supabase
+        'NAME': os.getenv('DB_NAME'),  # Substitua com o nome do banco
+        'USER': os.getenv('DB_USER'),  # Substitua com o usuário do Supabase
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Substitua com a senha gerada no Supabase
+        'HOST': 'lndhhmofzjgluqlonuaw.supabase.co',  # URL do seu Supabase
+        'PORT': '5432',  # Porta padrão para PostgreSQL
     }
 }
 
