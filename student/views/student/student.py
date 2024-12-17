@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from django.contrib.auth.hashers import check_password
+
 import requests
 
 from student.models import Student
@@ -26,7 +26,11 @@ class StudentViewSet(ModelViewSet):
             return Response(serializer.data)
         except Student.DoesNotExist:
             microservice_url = f"https://pi-microservices-177ebc723a1f.herokuapp.com/api/sigaa/student/?user={username}&pass={password}"
+
+            print(microservice_url)
             response = requests.get(microservice_url)
+
+            print(response.status_code)
 
             if response.status_code != 200:
                 return Response(
@@ -35,6 +39,8 @@ class StudentViewSet(ModelViewSet):
                 )
 
             data = response.json().get("studentInfo")
+
+            print(data)
 
             if not data:
                 return Response(
@@ -46,6 +52,7 @@ class StudentViewSet(ModelViewSet):
                 username=username,
                 password=password,
                 enrollment=data["name"].split(" - ")[0],
+                name=data["name"].split(" - ")[1],
                 course=data["course"],
                 photo=data["photo"]
             )
