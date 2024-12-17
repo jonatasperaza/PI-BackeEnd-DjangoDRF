@@ -25,7 +25,7 @@ class StudentViewSet(ModelViewSet):
             serializer = self.get_serializer(student)
             return Response(serializer.data)
         except Student.DoesNotExist:
-            microservice_url = f"http://localhost:3000/api/sigaa/student/?user={username}&pass={password}"
+            microservice_url = f"https://pi-microservices-177ebc723a1f.herokuapp.com/api/sigaa/student/?user={username}&pass={password}"
             response = requests.get(microservice_url)
 
             if response.status_code != 200:
