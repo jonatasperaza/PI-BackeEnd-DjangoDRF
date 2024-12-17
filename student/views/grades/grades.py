@@ -17,7 +17,7 @@ class GradesViewSet(ViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        url = f"http://localhost:3000/api/sigaa/notas/?user={username}&pass={password}&index={index}"
+        url = f"https://pi-microservices-177ebc723a1f.herokuapp.com/api/sigaa/notas/?user={username}&pass={password}&index={index}"
 
         try:
             response = requests.get(url)
