@@ -4,11 +4,18 @@ from dotenv import load_dotenv
 from urllib.parse import urlparse
 import os
 
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-2g-boqh@8l94!hrh6@*(0b(t6v4&j7u=rg+3zlt%42u)jo#wp*'
 
 DEBUG = True
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL não está configurada no ambiente.")
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -59,7 +66,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+tmpPostgres = urlparse(DATABASE_URL)
 
 DATABASES = {
     'default': {
